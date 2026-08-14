@@ -5,6 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOLA Colonics — Cleanse. Reset. Renew. | Uptown New Orleans</title>
 <meta name="description" content="NOLA Colonics blends pure luxury with health in Uptown New Orleans — colon hydrotherapy, infrared sauna, ionic foot detox, V/A-steam, and HydraFacial treatments.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<meta property="og:title" content="NOLA Colonics — Cleanse. Reset. Renew.">
+<meta property="og:description" content="Pure luxury wellness in Uptown New Orleans — colon hydrotherapy, infrared sauna, and restorative treatments.">
+<meta property="og:image" content="img/building-twilight.jpg">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "NOLA Colonics",
+  "image": "img/building-twilight.jpg",
+  "telephone": "+1-504-881-8010",
+  "email": "office@nolacolonics.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2426 Louisiana Ave",
+    "addressLocality": "New Orleans",
+    "addressRegion": "LA",
+    "postalCode": "70115",
+    "addressCountry": "US"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "84"
+  },
+  "openingHours": "Mo-Sa 08:00-20:00",
+  "priceRange": "$$"
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -118,6 +148,10 @@
     <h1 class="font-display text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.02] max-w-4xl">
       Cleanse. <span class="italic text-gold-light">Reset.</span><br>Renew.
     </h1>
+    <div class="flex items-center gap-2 mt-6 text-white/90">
+      <span class="text-gold-light tracking-tight">★★★★★</span>
+      <span class="text-sm font-light">4.5 · 84 Google reviews</span>
+    </div>
     <p class="text-white/80 max-w-lg mt-8 text-base md:text-lg font-light leading-relaxed">
       NOLA Colonics blends pure luxury with health for our guests' enjoyment — colon hydrotherapy, infrared sauna, and restorative treatments in a private Uptown sanctuary.
     </p>
@@ -291,6 +325,96 @@
   </div>
 </section>
 
+<!-- ============ TESTIMONIALS ============ -->
+<section class="py-24 md:py-32 bg-ivory">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="divider text-xs letterspace uppercase mb-5">Guest Reviews</p>
+      <h2 class="font-display text-4xl md:text-5xl text-ink">Loved Around Uptown</h2>
+      <div class="flex items-center justify-center gap-2 mt-5">
+        <span class="text-gold tracking-tight text-lg">★★★★★</span>
+        <span class="text-ink-light text-sm">4.5 rating · 84 Google reviews</span>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 mt-16 max-w-4xl mx-auto">
+      <div class="reveal bg-cream border border-gold/20 p-8">
+        <span class="text-gold text-lg">★★★★★</span>
+        <p class="text-ink-light font-light mt-4 leading-relaxed italic">"The most trusted colonics studio I've found anywhere — top-tier treatments, a gorgeous facility, and a genuinely knowledgeable staff."</p>
+        <p class="text-ink text-sm mt-4 letterspace uppercase">— LuxuRay, Google Review</p>
+      </div>
+      <div class="reveal bg-cream border border-gold/20 p-8" style="transition-delay:.1s">
+        <span class="text-gold text-lg">★★★★★</span>
+        <p class="text-ink-light font-light mt-4 leading-relaxed italic">"Katherine walked us through every step with patience and made our first colonic feel completely at ease."</p>
+        <p class="text-ink text-sm mt-4 letterspace uppercase">— Google Review</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOK YOUR VISIT — interactive mock flow ============ -->
+<section id="book" class="py-24 md:py-32 bg-ink relative overflow-hidden">
+  <div class="absolute -left-24 -bottom-24 text-[26rem] text-white/[0.03] leading-none select-none">⚜</div>
+  <div class="max-w-4xl mx-auto px-6 md:px-10 relative">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="divider text-xs letterspace uppercase mb-5">Book Your Visit</p>
+      <h2 class="font-display text-4xl md:text-5xl text-white">Real-Time Booking, Right Here</h2>
+      <p class="text-white/70 font-light mt-5 leading-relaxed">Pick a service, pick a time, done — no calls, no waiting on a reply. A preview of live availability booking.</p>
+    </div>
+
+    <div class="reveal bg-ivory mt-14 p-6 md:p-10" style="transition-delay:.1s">
+      <!-- Step indicator -->
+      <div class="flex items-center justify-center gap-3 mb-10 text-xs letterspace uppercase">
+        <span id="stepDot1" class="w-7 h-7 rounded-full bg-gold text-cream flex items-center justify-center transition-colors">1</span>
+        <span class="w-8 h-px bg-gold/30"></span>
+        <span id="stepDot2" class="w-7 h-7 rounded-full bg-ink/10 text-ink-light flex items-center justify-center transition-colors">2</span>
+        <span class="w-8 h-px bg-gold/30"></span>
+        <span id="stepDot3" class="w-7 h-7 rounded-full bg-ink/10 text-ink-light flex items-center justify-center transition-colors">3</span>
+      </div>
+
+      <!-- Step 1: Service -->
+      <div id="bookStep1">
+        <p class="font-display text-2xl text-ink text-center mb-6">Choose a Service</p>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <button onclick="selectService('Colon Hydrotherapy — 45 min · $65')" class="book-service text-left border border-ink/10 hover:border-gold p-4 transition-colors">
+            <p class="text-ink font-medium">Colon Hydrotherapy</p>
+            <p class="text-ink-light text-xs mt-1">45 min · $65</p>
+          </button>
+          <button onclick="selectService('Infrared Sauna — 30 min · $40')" class="book-service text-left border border-ink/10 hover:border-gold p-4 transition-colors">
+            <p class="text-ink font-medium">Infrared Sauna</p>
+            <p class="text-ink-light text-xs mt-1">30 min · $40</p>
+          </button>
+          <button onclick="selectService('Ionic Foot Detox — 30 min · $40')" class="book-service text-left border border-ink/10 hover:border-gold p-4 transition-colors">
+            <p class="text-ink font-medium">Ionic Foot Detox</p>
+            <p class="text-ink-light text-xs mt-1">30 min · $40</p>
+          </button>
+          <button onclick="selectService('V-Steam / A-Steam — 30 min · $40')" class="book-service text-left border border-ink/10 hover:border-gold p-4 transition-colors">
+            <p class="text-ink font-medium">V-Steam / A-Steam</p>
+            <p class="text-ink-light text-xs mt-1">30 min · $40</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Date/Time -->
+      <div id="bookStep2" class="hidden">
+        <p class="font-display text-2xl text-ink text-center mb-2">Pick a Time</p>
+        <p class="text-center text-ink-light text-sm mb-6" id="selectedServiceLabel"></p>
+        <div class="grid grid-cols-3 sm:grid-cols-4 gap-2 mb-6" id="dayGrid"></div>
+        <div class="grid grid-cols-3 sm:grid-cols-4 gap-2" id="timeGrid"></div>
+        <button onclick="goToStep(1)" class="text-ink-light text-xs letterspace uppercase mt-8 hover:text-gold">&larr; Back</button>
+      </div>
+
+      <!-- Step 3: Confirm -->
+      <div id="bookStep3" class="hidden text-center">
+        <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold flex items-center justify-center mx-auto mb-6 text-gold text-2xl">✓</div>
+        <p class="font-display text-3xl text-ink mb-3">You're Booked</p>
+        <p class="text-ink-light font-light" id="confirmSummary"></p>
+        <p class="text-ink-light font-light text-sm mt-6 max-w-sm mx-auto">A confirmation text and calendar invite would land in your phone instantly — no phone tag, no waiting on a callback.</p>
+        <button onclick="goToStep(1)" class="border border-gold text-gold text-xs letterspace uppercase px-8 py-4 mt-8 hover:bg-gold hover:text-cream transition-colors duration-300">Book Another</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ VISIT / CONTACT ============ -->
 <section id="visit" class="py-24 md:py-32 bg-ivory">
   <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-16">
@@ -329,6 +453,16 @@
           <img src="img/fb-icon.png" alt="Facebook" class="w-4 h-4">
         </a>
       </div>
+
+      <div class="mt-10 border border-gold/20 h-64 overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps?q=2426+Louisiana+Ave,+New+Orleans,+LA+70115&output=embed"
+          class="w-full h-full grayscale-[30%] contrast-[1.1]"
+          style="filter: sepia(8%);"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
     </div>
 
     <div class="reveal bg-ink p-8 md:p-10" style="transition-delay:.1s">
@@ -355,8 +489,17 @@
   </div>
 </section>
 
+<!-- ============ STICKY MOBILE BOOK BAR ============ -->
+<div class="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-ink border-t border-gold/30 px-6 py-3 flex items-center justify-between">
+  <div class="text-white">
+    <p class="text-xs text-white/60">Ready when you are</p>
+    <p class="font-display text-lg -mt-0.5">Book a Visit</p>
+  </div>
+  <a href="#book" class="bg-gold text-ink text-xs letterspace uppercase px-6 py-3">Book Now</a>
+</div>
+
 <!-- ============ FOOTER ============ -->
-<footer class="bg-ink border-t border-gold/20 py-12">
+<footer class="bg-ink border-t border-gold/20 py-12 pb-24 md:pb-12">
   <div class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
     <div class="flex items-center gap-3">
       <span class="text-gold text-lg">⚜</span>
@@ -379,6 +522,74 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
+
+  // ---- Mock booking flow ----
+  let bookingService = '';
+  let bookingDay = '';
+  let bookingTime = '';
+
+  function goToStep(step) {
+    [1,2,3].forEach(n => {
+      document.getElementById('bookStep'+n).classList.toggle('hidden', n !== step);
+      const dot = document.getElementById('stepDot'+n);
+      if (n <= step) { dot.classList.add('bg-gold','text-cream'); dot.classList.remove('bg-ink/10','text-ink-light'); }
+      else { dot.classList.remove('bg-gold','text-cream'); dot.classList.add('bg-ink/10','text-ink-light'); }
+    });
+  }
+
+  function selectService(label) {
+    bookingService = label;
+    document.getElementById('selectedServiceLabel').textContent = label;
+    buildDayGrid();
+    goToStep(2);
+  }
+
+  function buildDayGrid() {
+    const dayGrid = document.getElementById('dayGrid');
+    dayGrid.innerHTML = '';
+    const today = new Date();
+    const names = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    let added = 0, offset = 0;
+    while (added < 6) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + offset);
+      offset++;
+      if (d.getDay() === 0) continue; // closed Sunday
+      const label = names[d.getDay()] + ' ' + (d.getMonth()+1) + '/' + d.getDate();
+      const btn = document.createElement('button');
+      btn.textContent = label;
+      btn.className = 'day-btn border border-ink/10 hover:border-gold text-ink-light text-sm py-3 transition-colors';
+      btn.onclick = () => selectDay(label, btn);
+      dayGrid.appendChild(btn);
+      added++;
+    }
+    document.getElementById('timeGrid').innerHTML = '';
+  }
+
+  function selectDay(label, btn) {
+    bookingDay = label;
+    document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('bg-gold','text-cream','border-gold'));
+    btn.classList.add('bg-gold','text-cream','border-gold');
+    buildTimeGrid();
+  }
+
+  function buildTimeGrid() {
+    const times = ['9:00 AM','10:30 AM','12:00 PM','1:30 PM','3:00 PM','4:30 PM','6:00 PM','7:00 PM'];
+    const timeGrid = document.getElementById('timeGrid');
+    timeGrid.innerHTML = '';
+    times.forEach(t => {
+      const btn = document.createElement('button');
+      btn.textContent = t;
+      btn.className = 'time-btn border border-ink/10 hover:border-gold text-ink-light text-sm py-3 transition-colors';
+      btn.onclick = () => {
+        bookingTime = t;
+        document.getElementById('confirmSummary').innerHTML =
+          bookingService.split(' — ')[0] + '<br>' + bookingDay + ' at ' + t;
+        goToStep(3);
+      };
+      timeGrid.appendChild(btn);
+    });
+  }
 </script>
 </body>
 </html>
