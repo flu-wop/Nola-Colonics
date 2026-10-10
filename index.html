@@ -3,19 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
 <title>NOLA Colonics — Cleanse. Reset. Renew. | Uptown New Orleans</title>
 <meta name="description" content="NOLA Colonics blends pure luxury with health in Uptown New Orleans — colon hydrotherapy, infrared sauna, ionic foot detox, V/A-steam, and HydraFacial treatments.">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <meta property="og:title" content="NOLA Colonics — Cleanse. Reset. Renew.">
 <meta property="og:description" content="Pure luxury wellness in Uptown New Orleans — colon hydrotherapy, infrared sauna, and restorative treatments.">
-<meta property="og:image" content="img/building-twilight.jpg">
+<meta property="og:image" content="https://nola-colonics.vercel.app/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",
   "name": "NOLA Colonics",
-  "image": "img/building-twilight.jpg",
+  "image": "https://nola-colonics.vercel.app/img/og.jpg",
   "telephone": "+1-504-881-8010",
   "email": "office@nolacolonics.com",
   "address": {
@@ -25,11 +29,6 @@
     "addressRegion": "LA",
     "postalCode": "70115",
     "addressCountry": "US"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.5",
-    "reviewCount": "84"
   },
   "openingHours": "Mo-Sa 08:00-20:00",
   "priceRange": "$$"
@@ -63,10 +62,6 @@
 <style>
   html { scroll-behavior: smooth; }
   body { background: #F8F3E9; }
-  .fleur::before {
-    content: "⚜";
-    display: inline-block;
-  }
   .divider {
     display: flex;
     align-items: center;
@@ -82,8 +77,8 @@
     opacity: 0.5;
   }
   .letterspace { letter-spacing: 0.22em; }
-  .card-lift { transition: transform .5s ease, box-shadow .5s ease; }
-  .card-lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(28,42,68,0.25); }
+  .card-lift { transition: transform .4s ease, box-shadow .4s ease; }
+  .card-lift:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -16px rgba(28,42,68,0.25); }
   .gem {
     position: relative;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
@@ -99,15 +94,27 @@
     transition: transform .35s ease;
   }
   .nav-link:hover::after { transform: scaleX(1); }
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  /* Fade-and-rise on scroll: 400ms ease-out, nothing bouncy */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .4s ease-out, transform .4s ease-out; }
   .reveal.in { opacity: 1; transform: translateY(0); }
+  /* Slow hero drift */
+  @keyframes kb { from { transform: scale(1.03); } to { transform: scale(1.12); } }
+  .animate-kb { animation: kb 14s ease-in-out infinite alternate; }
+  .menu-row:hover .menu-name { color: #D4B98A; }
+  .slot-off { opacity: .35; text-decoration: line-through; cursor: not-allowed; }
   ::selection { background: #B8935A; color: #FCFAF4; }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-kb { animation: none !important; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+    .card-lift:hover { transform: none; }
+  }
 </style>
 </head>
 <body class="font-body text-ink antialiased">
 
 <!-- ============ NAV ============ -->
-<header id="top" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="siteHeader">
+<header id="top" class="fixed top-0 left-0 right-0 z-50">
   <div class="bg-cream/95 backdrop-blur-sm border-b border-gold/20">
     <div class="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-20">
       <a href="#top" class="flex items-center gap-3">
@@ -115,36 +122,37 @@
         <span class="font-display text-2xl md:text-[26px] tracking-wide text-ink">NOLA <span class="text-gold italic font-normal">Colonics</span></span>
       </a>
       <nav class="hidden lg:flex items-center gap-10 text-xs letterspace uppercase text-ink-light">
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#studio" class="nav-link">The Studio</a>
         <a href="#membership" class="nav-link">Membership</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#studio" class="nav-link">The Studio</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
         <a href="#visit" class="nav-link">Visit</a>
       </nav>
-      <a href="#visit" class="hidden md:inline-block border border-gold text-gold text-xs letterspace uppercase px-6 py-3 hover:bg-gold hover:text-cream transition-colors duration-300">Book Now</a>
-      <button id="menuBtn" class="lg:hidden text-ink text-2xl">&#9776;</button>
+      <a href="#book" class="hidden md:inline-block border border-gold text-gold text-xs letterspace uppercase px-6 py-3 hover:bg-gold hover:text-cream transition-colors duration-300">Book Now</a>
+      <button id="menuBtn" class="lg:hidden text-ink text-2xl" aria-label="Menu">&#9776;</button>
     </div>
   </div>
   <div id="mobileMenu" class="hidden bg-ivory border-b border-gold/20 lg:hidden">
     <div class="flex flex-col px-6 py-4 gap-4 text-sm letterspace uppercase text-ink-light">
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#studio">The Studio</a>
       <a href="#membership">Membership</a>
+      <a href="#services">Services</a>
+      <a href="#studio">The Studio</a>
+      <a href="#reviews">Reviews</a>
       <a href="#visit">Visit</a>
+      <a href="#book" class="text-gold">Book Now</a>
     </div>
   </div>
 </header>
 
 <!-- ============ HERO ============ -->
-<section class="relative min-h-screen flex items-end">
-  <div class="absolute inset-0">
-    <img src="img/building-twilight.jpg" alt="NOLA Colonics studio at twilight, Uptown New Orleans" class="w-full h-full object-cover">
+<section class="relative min-h-screen flex items-end bg-ink">
+  <div class="absolute inset-0 overflow-hidden">
+    <img src="img/building-twilight.jpg" alt="NOLA Colonics studio at twilight, Uptown New Orleans" class="w-full h-full object-cover animate-kb" onerror="imgFail(this)">
     <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/10"></div>
     <div class="absolute inset-0 bg-ink/20"></div>
   </div>
   <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pb-24 pt-40 w-full">
-    <p class="text-gold-light text-xs md:text-sm letterspace uppercase mb-6 fade-in">Uptown New Orleans · Est. Wellness Studio</p>
+    <p class="text-gold-light text-xs md:text-sm letterspace uppercase mb-6">Uptown New Orleans · Colon Hydrotherapy &amp; Wellness</p>
     <h1 class="font-display text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.02] max-w-4xl">
       Cleanse. <span class="italic text-gold-light">Reset.</span><br>Renew.
     </h1>
@@ -156,177 +164,130 @@
       NOLA Colonics blends pure luxury with health for our guests' enjoyment — colon hydrotherapy, infrared sauna, and restorative treatments in a private Uptown sanctuary.
     </p>
     <div class="flex flex-wrap gap-4 mt-10">
-      <a href="#visit" class="bg-gold text-cream text-xs letterspace uppercase px-8 py-4 hover:bg-gold-light transition-colors duration-300">Book an Appointment</a>
-      <a href="#services" class="border border-white/40 text-white text-xs letterspace uppercase px-8 py-4 hover:border-gold hover:text-gold-light transition-colors duration-300">Explore Services</a>
+      <a href="#book" class="bg-gold text-cream text-xs letterspace uppercase px-8 py-4 hover:bg-gold-light transition-colors duration-300">Book an Appointment</a>
+      <a href="#membership" class="border border-white/40 text-white text-xs letterspace uppercase px-8 py-4 hover:border-gold hover:text-gold-light transition-colors duration-300">View Memberships</a>
     </div>
   </div>
-  <a href="#services" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/70 text-2xl animate-bounce">⌄</a>
-</section>
-
-<!-- ============ SERVICES ============ -->
-<section id="services" class="py-24 md:py-32 bg-ivory">
-  <div class="max-w-7xl mx-auto px-6 md:px-10">
-    <div class="text-center max-w-2xl mx-auto reveal">
-      <p class="divider text-xs letterspace uppercase mb-5">Our Services</p>
-      <h2 class="font-display text-4xl md:text-5xl text-ink">A Sanctuary for Body &amp; Soul</h2>
-      <p class="text-ink-light font-light mt-5 leading-relaxed">Every treatment is personalized to your comfort, guided by trained therapists in a private, sanitary, closed system built for your peace of mind.</p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8 mt-16">
-      <div class="reveal bg-cream border border-gold/20 card-lift">
-        <div class="aspect-[4/3] overflow-hidden">
-          <img src="img/colonic-room.jpg" alt="Private colon hydrotherapy treatment room" class="w-full h-full object-cover">
-        </div>
-        <div class="p-8">
-          <p class="text-gold text-xs letterspace uppercase mb-2">From $65</p>
-          <h3 class="font-display text-2xl text-ink mb-3">Colon Hydrotherapy</h3>
-          <p class="text-ink-light text-sm font-light leading-relaxed">A gentle cleansing treatment using warm, filtered water to flush waste and gas from the colon — 45 or 60 minute sessions with a trained hydrotherapist.</p>
-        </div>
-      </div>
-
-      <div class="reveal bg-cream border border-gold/20 card-lift" style="transition-delay:.1s">
-        <div class="aspect-[4/3] overflow-hidden">
-          <img src="img/sauna.jpg" alt="Infrared sauna suite" class="w-full h-full object-cover">
-        </div>
-        <div class="p-8">
-          <p class="text-gold text-xs letterspace uppercase mb-2">$40 · 30 min</p>
-          <h3 class="font-display text-2xl text-ink mb-3">Infrared Sauna</h3>
-          <p class="text-ink-light text-sm font-light leading-relaxed">Gentle infrared warmth from within, encouraging a deep, comfortable sweat at lower temperatures than a traditional sauna.</p>
-        </div>
-      </div>
-
-      <div class="reveal bg-cream border border-gold/20 card-lift" style="transition-delay:.2s">
-        <div class="aspect-[4/3] overflow-hidden">
-          <img src="img/hero-skincare.jpg" alt="HydraFacial and skincare treatment products" class="w-full h-full object-cover">
-        </div>
-        <div class="p-8">
-          <p class="text-gold text-xs letterspace uppercase mb-2">From $50</p>
-          <h3 class="font-display text-2xl text-ink mb-3">HydraFacial &amp; Waxing</h3>
-          <p class="text-ink-light text-sm font-light leading-relaxed">Classic and Platinum HydraFacials, Brazilian waxing, and Hydra Vajacial treatments for a radiant, refreshed finish.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- secondary service row -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-      <div class="reveal border border-gold/20 bg-cream p-6 text-center">
-        <p class="font-display text-xl text-ink">Ionic Foot Detox</p>
-        <p class="text-gold text-xs letterspace uppercase mt-2">$40 · 30 min</p>
-      </div>
-      <div class="reveal border border-gold/20 bg-cream p-6 text-center">
-        <p class="font-display text-xl text-ink">V-Steam</p>
-        <p class="text-gold text-xs letterspace uppercase mt-2">$40 · 30 min</p>
-      </div>
-      <div class="reveal border border-gold/20 bg-cream p-6 text-center">
-        <p class="font-display text-xl text-ink">A-Steam</p>
-        <p class="text-gold text-xs letterspace uppercase mt-2">$40 · 30 min</p>
-      </div>
-      <div class="reveal border border-gold/20 bg-cream p-6 text-center">
-        <p class="font-display text-xl text-ink">House Special Detox</p>
-        <p class="text-gold text-xs letterspace uppercase mt-2">$125 · 90 min</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section id="about" class="py-24 md:py-32 bg-ink relative overflow-hidden">
-  <svg class="absolute -right-32 -top-32 w-[36rem] h-[36rem] text-white opacity-[0.04] pointer-events-none select-none" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-.6 2.4-1.8 4-3.8 4.8C6.4 7.6 5 9.2 5 11.2c0 1.8 1.1 3.3 2.7 3.9-1.9.4-3.3 1.6-3.9 3.4C3.4 19.6 4.4 21 6 21h1.5c-.3-.9-.1-1.8.6-2.5.8-.8 1.9-1 2.9-.6-.4-1.7-.2-3.4 1-4.7 1.2 1.3 1.4 3 1 4.7 1-.4 2.1-.2 2.9.6.7.7.9 1.6.6 2.5H18c1.6 0 2.6-1.4 2.2-2.5-.6-1.8-2-3-3.9-3.4 1.6-.6 2.7-2.1 2.7-3.9 0-2-1.4-3.6-3.2-4.4C13.8 6 12.6 4.4 12 2z"/></svg>
-  <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-16 items-center relative">
-    <div class="reveal">
-      <p class="divider text-xs letterspace uppercase mb-5 justify-start before:hidden">The Process</p>
-      <h2 class="font-display text-4xl md:text-5xl text-white leading-tight">Guided, Private, <span class="italic text-gold-light">Restorative.</span></h2>
-      <p class="text-white/70 font-light leading-relaxed mt-6">
-        Colon hydrotherapy is performed using a closed, sanitary system designed for your comfort, privacy, and safety. You'll lie comfortably while warm, purified water is slowly introduced through a closed system — your therapist guiding every step and offering gentle abdominal massage to encourage release.
-      </p>
-      <p class="text-white/70 font-light leading-relaxed mt-4">
-        Sessions run 35–45 minutes. Most guests leave feeling lighter, refreshed, and more relaxed.
-      </p>
-      <div class="grid grid-cols-2 gap-6 mt-10">
-        <div class="border-l border-gold/40 pl-5">
-          <p class="font-display text-3xl text-gold-light">2019</p>
-          <p class="text-white/60 text-xs letterspace uppercase mt-1">Serving Uptown</p>
-        </div>
-        <div class="border-l border-gold/40 pl-5">
-          <p class="font-display text-3xl text-gold-light">100%</p>
-          <p class="text-white/60 text-xs letterspace uppercase mt-1">Single-Use, Sanitary</p>
-        </div>
-      </div>
-    </div>
-    <div class="reveal grid grid-cols-2 gap-4" style="transition-delay:.15s">
-      <img src="img/colonic-room.jpg" alt="Treatment room detail" class="w-full h-64 object-cover mt-10">
-      <img src="img/building-twilight.jpg" alt="Studio exterior detail" class="w-full h-64 object-cover">
-    </div>
-  </div>
-</section>
-
-<!-- ============ THE STUDIO ============ -->
-<section id="studio" class="py-24 md:py-32 bg-ivory">
-  <div class="max-w-7xl mx-auto px-6 md:px-10">
-    <div class="text-center max-w-2xl mx-auto reveal">
-      <p class="divider text-xs letterspace uppercase mb-5">The Studio</p>
-      <h2 class="font-display text-4xl md:text-5xl text-ink">Pure Luxury, Minutes From the Quarter</h2>
-      <p class="text-ink-light font-light mt-5 leading-relaxed">Tucked into Uptown New Orleans, our studio was built as a quiet counterpoint to the city outside — chandeliers, marble, and warm light designed to slow you down.</p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-4 mt-16">
-      <div class="reveal md:col-span-2 md:row-span-2 overflow-hidden">
-        <img src="img/building-twilight.jpg" alt="NOLA Colonics studio exterior at twilight" class="w-full h-full object-cover min-h-[22rem] card-lift">
-      </div>
-      <div class="reveal overflow-hidden" style="transition-delay:.1s">
-        <img src="img/colonic-room.jpg" alt="Chandelier and marble treatment suite" class="w-full h-full object-cover min-h-[16rem] card-lift">
-      </div>
-      <div class="reveal overflow-hidden" style="transition-delay:.2s">
-        <img src="img/sauna.jpg" alt="Infrared sauna interior" class="w-full h-full object-cover min-h-[16rem] card-lift">
-      </div>
-    </div>
-  </div>
+  <a href="#membership" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/70 text-2xl" aria-label="Scroll down">⌄</a>
 </section>
 
 <!-- ============ MEMBERSHIP — gemstone tiers ============ -->
-<section id="membership" class="py-24 md:py-32 bg-ink relative">
+<section id="membership" class="py-24 md:py-32 bg-ivory scroll-mt-16">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
     <div class="text-center max-w-2xl mx-auto reveal">
       <p class="divider text-xs letterspace uppercase mb-5">Membership Packages</p>
-      <h2 class="font-display text-4xl md:text-5xl text-white">Four Ways to Belong</h2>
-      <p class="text-white/70 font-light mt-5 leading-relaxed">Monthly plans named for what they're worth — join the collection that fits your routine.</p>
+      <h2 class="font-display text-4xl md:text-5xl text-ink">Four Ways to Belong</h2>
+      <p class="text-ink-light font-light mt-5 leading-relaxed">Monthly plans named for what they're worth — join the collection that fits your routine.</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
       <!-- Sapphire -->
-      <div class="reveal bg-ink-light/40 border border-powder/30 p-8 text-center card-lift">
-        <div class="gem w-10 h-10 mx-auto mb-6" style="background:linear-gradient(135deg,#9BB8D8,#3E5B85);"></div>
-        <h3 class="font-display text-2xl text-white">Sapphire</h3>
-        <p class="text-gold-light text-3xl font-display mt-3">$100<span class="text-sm text-white/50">/mo</span></p>
-        <p class="text-white/60 text-xs font-light mt-4 leading-relaxed letterspace">FOUR 30-MIN IONIC FOOT DETOX SESSIONS A MONTH</p>
+      <div class="reveal bg-ink border border-powder/40 p-8 text-center card-lift">
+        <div class="gem w-12 h-12 mx-auto mb-6" style="background:linear-gradient(135deg,#9BB8D8,#3E5B85);"></div>
+        <h3 class="font-display text-3xl text-white">Sapphire</h3>
+        <p class="text-gold-light text-4xl font-display mt-3">$100<span class="text-sm text-white/50">/mo</span></p>
+        <p class="text-white/70 text-xs font-light mt-5 leading-relaxed letterspace uppercase">Four 30-min Ionic Foot Detox sessions a month</p>
+        <p class="text-gold-light/80 text-xs mt-4">$60 less than four single sessions</p>
       </div>
       <!-- Ruby -->
-      <div class="reveal bg-ink-light/40 border border-red-900/30 p-8 text-center card-lift" style="transition-delay:.1s">
-        <div class="gem w-10 h-10 mx-auto mb-6" style="background:linear-gradient(135deg,#C9707A,#7A2530);"></div>
-        <h3 class="font-display text-2xl text-white">Ruby</h3>
-        <p class="text-gold-light text-3xl font-display mt-3">$100<span class="text-sm text-white/50">/mo</span></p>
-        <p class="text-white/60 text-xs font-light mt-4 leading-relaxed letterspace">FOUR 30-MIN INFRARED SAUNA SESSIONS A MONTH</p>
+      <div class="reveal bg-ink border border-red-300/30 p-8 text-center card-lift" style="transition-delay:.1s">
+        <div class="gem w-12 h-12 mx-auto mb-6" style="background:linear-gradient(135deg,#C9707A,#7A2530);"></div>
+        <h3 class="font-display text-3xl text-white">Ruby</h3>
+        <p class="text-gold-light text-4xl font-display mt-3">$100<span class="text-sm text-white/50">/mo</span></p>
+        <p class="text-white/70 text-xs font-light mt-5 leading-relaxed letterspace uppercase">Four 30-min Infrared Sauna sessions a month</p>
+        <p class="text-gold-light/80 text-xs mt-4">$60 less than four single sessions</p>
       </div>
       <!-- Pearl -->
-      <div class="reveal bg-ink-light/40 border border-gold/30 p-8 text-center card-lift" style="transition-delay:.2s">
-        <div class="gem w-10 h-10 mx-auto mb-6" style="background:linear-gradient(135deg,#FCFAF4,#D4B98A);"></div>
-        <h3 class="font-display text-2xl text-white">Pearl</h3>
-        <p class="text-gold-light text-3xl font-display mt-3">$100<span class="text-sm text-white/50">/mo</span></p>
-        <p class="text-white/60 text-xs font-light mt-4 leading-relaxed letterspace">FOUR 30-MIN V-STEAM SESSIONS A MONTH</p>
+      <div class="reveal bg-ink border border-gold/40 p-8 text-center card-lift" style="transition-delay:.2s">
+        <div class="gem w-12 h-12 mx-auto mb-6" style="background:linear-gradient(135deg,#FCFAF4,#D4B98A);"></div>
+        <h3 class="font-display text-3xl text-white">Pearl</h3>
+        <p class="text-gold-light text-4xl font-display mt-3">$100<span class="text-sm text-white/50">/mo</span></p>
+        <p class="text-white/70 text-xs font-light mt-5 leading-relaxed letterspace uppercase">Four 30-min V-Steam sessions a month</p>
+        <p class="text-gold-light/80 text-xs mt-4">$60 less than four single sessions</p>
       </div>
       <!-- Diamond -->
-      <div class="reveal bg-gold/10 border border-gold p-8 text-center card-lift relative" style="transition-delay:.3s">
-        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-ink text-[10px] letterspace uppercase px-3 py-1">Most Popular</span>
-        <div class="gem w-10 h-10 mx-auto mb-6" style="background:linear-gradient(135deg,#EAF2FF,#B8935A);"></div>
-        <h3 class="font-display text-2xl text-white">Diamond</h3>
-        <p class="text-gold-light text-3xl font-display mt-3">$300<span class="text-sm text-white/50">/mo</span></p>
-        <p class="text-white/60 text-xs font-light mt-4 leading-relaxed letterspace">FOUR 45-MIN COLONIC SESSIONS A MONTH</p>
+      <div class="reveal bg-ink border-2 border-gold p-8 text-center card-lift" style="transition-delay:.3s">
+        <div class="gem w-12 h-12 mx-auto mb-6" style="background:linear-gradient(135deg,#EAF2FF,#B8935A);"></div>
+        <h3 class="font-display text-3xl text-white">Diamond</h3>
+        <p class="text-gold-light text-4xl font-display mt-3">$300<span class="text-sm text-white/50">/mo</span></p>
+        <p class="text-white/70 text-xs font-light mt-5 leading-relaxed letterspace uppercase">Four 45-min Colonic sessions a month</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ TESTIMONIALS ============ -->
-<section class="py-24 md:py-32 bg-ivory">
+<!-- ============ SERVICES — spa-menu style ============ -->
+<section id="services" class="py-24 md:py-32 bg-ink scroll-mt-16">
+  <div class="max-w-3xl mx-auto px-6 md:px-10">
+    <div class="text-center reveal">
+      <p class="divider text-xs letterspace uppercase mb-5">The Menu</p>
+      <h2 class="font-display text-4xl md:text-6xl text-white">Services</h2>
+      <p class="text-white/70 font-light mt-5 leading-relaxed">Every treatment is personalized to your comfort, guided by trained therapists in a private, sanitary, closed system. Tap any service to book it.</p>
+    </div>
+
+    <div id="menuMount" class="mt-16"></div>
+
+    <!-- Policies, in their words -->
+    <div class="mt-20 pt-12 border-t border-white/10 grid md:grid-cols-3 gap-10 reveal">
+      <div>
+        <p class="text-gold-light text-xs letterspace uppercase mb-3">Cancel or reschedule</p>
+        <p class="text-white/60 text-sm font-light leading-relaxed">Please give at least 24 hours' notice. Rescheduled appointments keep any paid deposit.</p>
+      </div>
+      <div>
+        <p class="text-gold-light text-xs letterspace uppercase mb-3">Deposits &amp; no-shows</p>
+        <p class="text-white/60 text-sm font-light leading-relaxed">Deposits are non-refundable. A missed appointment forfeits the deposit, and three or more no-shows may be refused future appointments.</p>
+      </div>
+      <div>
+        <p class="text-gold-light text-xs letterspace uppercase mb-3">Arrival</p>
+        <p class="text-white/60 text-sm font-light leading-relaxed">A late arrival may shorten your session if the schedule requires it. The full session is still charged.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE STUDIO (process + gallery) ============ -->
+<section id="studio" class="py-24 md:py-32 bg-ivory scroll-mt-16">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <div class="reveal">
+        <p class="divider text-xs letterspace uppercase mb-5 justify-start before:hidden">The Studio</p>
+        <h2 class="font-display text-4xl md:text-5xl text-ink leading-tight">Guided, Private, <span class="italic text-gold">Restorative.</span></h2>
+        <p class="text-ink-light font-light leading-relaxed mt-6">
+          Tucked into Uptown New Orleans, the studio is a quiet counterpoint to the city outside — chandeliers, marble, and warm light designed to slow you down, minutes from Downtown and the French Quarter.
+        </p>
+        <p class="text-ink-light font-light leading-relaxed mt-4">
+          Colon hydrotherapy is performed using a closed, sanitary system designed for your comfort, privacy, and safety. You'll lie comfortably while warm, purified water is slowly introduced — your therapist guiding every step and offering gentle abdominal massage to encourage release.
+        </p>
+        <div class="grid grid-cols-2 gap-6 mt-10">
+          <div class="border-l border-gold/50 pl-5">
+            <p class="font-display text-3xl text-ink">Mon – Sat</p>
+            <p class="text-ink-light/70 text-xs letterspace uppercase mt-1">8am – 8pm</p>
+          </div>
+          <div class="border-l border-gold/50 pl-5">
+            <p class="font-display text-3xl text-ink">Closed</p>
+            <p class="text-ink-light/70 text-xs letterspace uppercase mt-1">Sanitary System</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="aspect-[4/3] overflow-hidden bg-ink">
+          <img src="img/colonic-room.jpg" alt="Chandelier and marble treatment suite" class="w-full h-full object-cover" loading="lazy" onerror="imgFail(this)">
+        </div>
+        <div class="grid grid-cols-2 gap-4 mt-4">
+          <div class="aspect-[4/3] overflow-hidden bg-ink">
+            <img src="img/sauna.jpg" alt="Infrared sauna interior" class="w-full h-full object-cover" loading="lazy" onerror="imgFail(this)">
+          </div>
+          <div class="aspect-[4/3] overflow-hidden bg-ink">
+            <img src="img/hero-skincare.jpg" alt="HydraFacial and skincare treatment products" class="w-full h-full object-cover" loading="lazy" onerror="imgFail(this)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews" class="py-24 md:py-32 bg-cream border-y border-gold/20 scroll-mt-16">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
     <div class="text-center max-w-2xl mx-auto reveal">
       <p class="divider text-xs letterspace uppercase mb-5">Guest Reviews</p>
@@ -337,12 +298,12 @@
       </div>
     </div>
     <div class="grid md:grid-cols-2 gap-8 mt-16 max-w-4xl mx-auto">
-      <div class="reveal bg-cream border border-gold/20 p-8">
+      <div class="reveal bg-ivory border border-gold/20 p-8">
         <span class="text-gold text-lg">★★★★★</span>
         <p class="text-ink-light font-light mt-4 leading-relaxed italic">"The most trusted colonics studio I've found anywhere — top-tier treatments, a gorgeous facility, and a genuinely knowledgeable staff."</p>
         <p class="text-ink text-sm mt-4 letterspace uppercase">— LuxuRay, Google Review</p>
       </div>
-      <div class="reveal bg-cream border border-gold/20 p-8" style="transition-delay:.1s">
+      <div class="reveal bg-ivory border border-gold/20 p-8" style="transition-delay:.1s">
         <span class="text-gold text-lg">★★★★★</span>
         <p class="text-ink-light font-light mt-4 leading-relaxed italic">"Katherine walked us through every step with patience and made our first colonic feel completely at ease."</p>
         <p class="text-ink text-sm mt-4 letterspace uppercase">— Google Review</p>
@@ -351,9 +312,8 @@
   </div>
 </section>
 
-<!-- ============ BOOK YOUR VISIT — interactive mock flow ============ -->
-<section id="book" class="py-24 md:py-32 bg-ink relative overflow-hidden">
-  <svg class="absolute -left-32 -bottom-32 w-[34rem] h-[34rem] text-white opacity-[0.04] pointer-events-none select-none" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-.6 2.4-1.8 4-3.8 4.8C6.4 7.6 5 9.2 5 11.2c0 1.8 1.1 3.3 2.7 3.9-1.9.4-3.3 1.6-3.9 3.4C3.4 19.6 4.4 21 6 21h1.5c-.3-.9-.1-1.8.6-2.5.8-.8 1.9-1 2.9-.6-.4-1.7-.2-3.4 1-4.7 1.2 1.3 1.4 3 1 4.7 1-.4 2.1-.2 2.9.6.7.7.9 1.6.6 2.5H18c1.6 0 2.6-1.4 2.2-2.5-.6-1.8-2-3-3.9-3.4 1.6-.6 2.7-2.1 2.7-3.9 0-2-1.4-3.6-3.2-4.4C13.8 6 12.6 4.4 12 2z"/></svg>
+<!-- ============ BOOK — one interactive mock flow ============ -->
+<section id="book" class="py-24 md:py-32 bg-ink relative overflow-hidden scroll-mt-16">
   <div class="max-w-4xl mx-auto px-6 md:px-10 relative">
     <div class="text-center max-w-2xl mx-auto reveal">
       <p class="divider text-xs letterspace uppercase mb-5">Book Your Visit</p>
@@ -361,63 +321,87 @@
       <p class="text-white/70 font-light mt-5 leading-relaxed">Pick a service, pick a time, done — no calls, no waiting on a reply. A preview of live availability booking.</p>
     </div>
 
-    <div class="reveal bg-ivory mt-14 p-6 md:p-10" style="transition-delay:.1s">
+    <div id="bookCard" class="reveal bg-ivory mt-14 p-6 md:p-10 scroll-mt-24" style="transition-delay:.1s">
       <!-- Step indicator -->
       <div class="flex items-center justify-center gap-3 mb-10 text-xs letterspace uppercase">
         <span id="stepDot1" class="w-7 h-7 rounded-full bg-gold text-cream flex items-center justify-center transition-colors">1</span>
-        <span class="w-8 h-px bg-gold/30"></span>
+        <span class="w-6 h-px bg-gold/30"></span>
         <span id="stepDot2" class="w-7 h-7 rounded-full bg-ink/10 text-ink-light flex items-center justify-center transition-colors">2</span>
-        <span class="w-8 h-px bg-gold/30"></span>
+        <span class="w-6 h-px bg-gold/30"></span>
         <span id="stepDot3" class="w-7 h-7 rounded-full bg-ink/10 text-ink-light flex items-center justify-center transition-colors">3</span>
+        <span class="w-6 h-px bg-gold/30"></span>
+        <span id="stepDot4" class="w-7 h-7 rounded-full bg-ink/10 text-ink-light flex items-center justify-center transition-colors">4</span>
       </div>
 
       <!-- Step 1: Service -->
       <div id="bookStep1">
-        <p class="font-display text-2xl text-ink text-center mb-6">Choose a Service</p>
-        <div class="grid sm:grid-cols-2 gap-3">
-          <button onclick="selectService('Colon Hydrotherapy — 45 min · $65')" class="book-service text-left border border-ink/10 hover:border-gold p-4 transition-colors">
-            <p class="text-ink font-medium">Colon Hydrotherapy</p>
-            <p class="text-ink-light text-xs mt-1">45 min · $65</p>
-          </button>
-          <button onclick="selectService('Infrared Sauna — 30 min · $40')" class="book-service text-left border border-ink/10 hover:border-gold p-4 transition-colors">
-            <p class="text-ink font-medium">Infrared Sauna</p>
-            <p class="text-ink-light text-xs mt-1">30 min · $40</p>
-          </button>
-          <button onclick="selectService('Ionic Foot Detox — 30 min · $40')" class="book-service text-left border border-ink/10 hover:border-gold p-4 transition-colors">
-            <p class="text-ink font-medium">Ionic Foot Detox</p>
-            <p class="text-ink-light text-xs mt-1">30 min · $40</p>
-          </button>
-          <button onclick="selectService('V-Steam / A-Steam — 30 min · $40')" class="book-service text-left border border-ink/10 hover:border-gold p-4 transition-colors">
-            <p class="text-ink font-medium">V-Steam / A-Steam</p>
-            <p class="text-ink-light text-xs mt-1">30 min · $40</p>
-          </button>
-        </div>
+        <p class="font-display text-2xl text-ink text-center mb-8">Choose a Service</p>
+        <div id="bookServiceMount"></div>
       </div>
 
       <!-- Step 2: Date/Time -->
       <div id="bookStep2" class="hidden">
         <p class="font-display text-2xl text-ink text-center mb-2">Pick a Time</p>
         <p class="text-center text-ink-light text-sm mb-6" id="selectedServiceLabel"></p>
-        <div class="grid grid-cols-3 sm:grid-cols-4 gap-2 mb-6" id="dayGrid"></div>
-        <div class="grid grid-cols-3 sm:grid-cols-4 gap-2" id="timeGrid"></div>
+        <div id="callOnly" class="hidden text-center py-6">
+          <p class="text-ink-light font-light max-w-md mx-auto leading-relaxed">The Elite Party is a three-hour experience. Call the studio for details and to plan it with us.</p>
+          <a href="tel:+15048818010" class="inline-block bg-gold text-ink text-xs letterspace uppercase px-8 py-4 mt-6 hover:bg-gold-light transition-colors">Call 504-881-8010</a>
+        </div>
+        <div id="pickTime">
+          <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-6" id="dayGrid"></div>
+          <div class="grid grid-cols-3 sm:grid-cols-4 gap-2" id="timeGrid"></div>
+        </div>
         <button onclick="goToStep(1)" class="text-ink-light text-xs letterspace uppercase mt-8 hover:text-gold">&larr; Back</button>
       </div>
 
-      <!-- Step 3: Confirm -->
-      <div id="bookStep3" class="hidden text-center">
+      <!-- Step 3: Details + policies -->
+      <div id="bookStep3" class="hidden">
+        <p class="font-display text-2xl text-ink text-center mb-2">Your Details</p>
+        <p class="text-center text-ink-light text-sm mb-8" id="detailsSummary"></p>
+        <form id="detailsForm" class="space-y-4 max-w-xl mx-auto">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <input type="text" placeholder="Full Name" required class="w-full bg-white border border-ink/15 text-ink placeholder-ink/40 px-4 py-3 text-sm focus:outline-none focus:border-gold">
+            <input type="tel" placeholder="Phone" required class="w-full bg-white border border-ink/15 text-ink placeholder-ink/40 px-4 py-3 text-sm focus:outline-none focus:border-gold">
+          </div>
+          <input type="email" placeholder="Email" required class="w-full bg-white border border-ink/15 text-ink placeholder-ink/40 px-4 py-3 text-sm focus:outline-none focus:border-gold">
+          <textarea rows="2" placeholder="Notes (optional)" class="w-full bg-white border border-ink/15 text-ink placeholder-ink/40 px-4 py-3 text-sm focus:outline-none focus:border-gold"></textarea>
+
+          <div class="border border-gold/40 bg-cream p-5 mt-2">
+            <p class="text-gold text-xs letterspace uppercase mb-3">Booking Policies</p>
+            <ul class="text-ink-light text-sm font-light leading-relaxed space-y-2 list-disc pl-5">
+              <li>Cancel or reschedule at least 24 hours before your appointment. Rescheduled appointments keep any paid deposit.</li>
+              <li>Deposits are non-refundable. Missing an appointment forfeits your deposit.</li>
+              <li>Three or more no-shows may be refused future appointments.</li>
+              <li>Late arrivals may shorten your session if the schedule requires it. The full session is still charged.</li>
+            </ul>
+            <label class="flex items-start gap-3 mt-5 text-sm text-ink cursor-pointer">
+              <input type="checkbox" required class="mt-1 accent-[#B8935A]">
+              <span>I've read and agree to the booking policies.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="w-full bg-gold text-ink text-xs letterspace uppercase py-4 hover:bg-gold-light transition-colors duration-300">Reserve My Time</button>
+          <p class="text-center text-ink-light/70 text-xs">In the live version, your deposit is collected securely at this step.</p>
+        </form>
+        <button onclick="goToStep(2)" class="text-ink-light text-xs letterspace uppercase mt-8 hover:text-gold">&larr; Back</button>
+      </div>
+
+      <!-- Step 4: Confirm -->
+      <div id="bookStep4" class="hidden text-center">
         <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold flex items-center justify-center mx-auto mb-6 text-gold text-2xl">✓</div>
         <p class="font-display text-3xl text-ink mb-3">You're Booked</p>
         <p class="text-ink-light font-light" id="confirmSummary"></p>
-        <p class="text-ink-light font-light text-sm mt-6 max-w-sm mx-auto">A confirmation text and calendar invite would land in your phone instantly — no phone tag, no waiting on a callback.</p>
+        <p class="text-ink-light font-light text-sm mt-6 max-w-sm mx-auto">A confirmation email and calendar invite would land in your inbox instantly — no phone tag, no waiting on a callback.</p>
+        <p class="text-ink-light/60 text-xs mt-4">This is a preview. Nothing was booked or charged.</p>
         <button onclick="goToStep(1)" class="border border-gold text-gold text-xs letterspace uppercase px-8 py-4 mt-8 hover:bg-gold hover:text-cream transition-colors duration-300">Book Another</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ VISIT / CONTACT ============ -->
-<section id="visit" class="py-24 md:py-32 bg-ivory">
-  <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-16">
+<!-- ============ VISIT ============ -->
+<section id="visit" class="py-24 md:py-32 bg-ivory scroll-mt-16">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
     <div class="reveal">
       <p class="divider text-xs letterspace uppercase mb-5 justify-start before:hidden">Visit Us</p>
       <h2 class="font-display text-4xl md:text-5xl text-ink leading-tight">Uptown New Orleans</h2>
@@ -430,11 +414,11 @@
         </div>
         <div class="flex gap-4">
           <span class="text-gold">⚜</span>
-          <span>504-881-8010</span>
+          <a href="tel:+15048818010" class="hover:text-gold transition-colors">504-881-8010</a>
         </div>
         <div class="flex gap-4">
           <span class="text-gold">⚜</span>
-          <span>office@nolacolonics.com</span>
+          <a href="mailto:office@nolacolonics.com" class="hover:text-gold transition-colors">office@nolacolonics.com</a>
         </div>
         <div class="flex gap-4">
           <span class="text-gold">⚜</span>
@@ -446,45 +430,24 @@
       </div>
 
       <div class="flex gap-5 mt-10">
-        <a href="https://instagram.com/nolacolonics" class="w-10 h-10 border border-gold/40 flex items-center justify-center hover:bg-gold hover:border-gold transition-colors duration-300">
-          <img src="img/ig-icon.png" alt="Instagram" class="w-4 h-4">
+        <a href="https://instagram.com/nolacolonics" target="_blank" rel="noopener" aria-label="Instagram" class="w-11 h-11 border border-gold/40 flex items-center justify-center hover:bg-gold hover:border-gold transition-colors duration-300">
+          <img src="img/ig-icon.png" alt="Instagram" data-icon class="w-4 h-4" onerror="imgFail(this)">
         </a>
-        <a href="https://m.facebook.com/Nola-Colonics-102179087828677/" class="w-10 h-10 border border-gold/40 flex items-center justify-center hover:bg-gold hover:border-gold transition-colors duration-300">
-          <img src="img/fb-icon.png" alt="Facebook" class="w-4 h-4">
+        <a href="https://m.facebook.com/Nola-Colonics-102179087828677/" target="_blank" rel="noopener" aria-label="Facebook" class="w-11 h-11 border border-gold/40 flex items-center justify-center hover:bg-gold hover:border-gold transition-colors duration-300">
+          <img src="img/fb-icon.png" alt="Facebook" data-icon class="w-4 h-4" onerror="imgFail(this)">
         </a>
-      </div>
-
-      <div class="mt-10 border border-gold/20 h-64 overflow-hidden">
-        <iframe
-          src="https://www.google.com/maps?q=2426+Louisiana+Ave,+New+Orleans,+LA+70115&output=embed"
-          class="w-full h-full grayscale-[30%] contrast-[1.1]"
-          style="filter: sepia(8%);"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
       </div>
     </div>
 
-    <div class="reveal bg-ink p-8 md:p-10" style="transition-delay:.1s">
-      <h3 class="font-display text-2xl text-white mb-6">Book an Appointment</h3>
-      <form class="space-y-4" onsubmit="event.preventDefault(); this.reset(); document.getElementById('formMsg').classList.remove('hidden');">
-        <div class="grid sm:grid-cols-2 gap-4">
-          <input type="text" placeholder="Full Name" required class="w-full bg-transparent border border-white/20 text-white placeholder-white/40 px-4 py-3 text-sm focus:outline-none focus:border-gold">
-          <input type="tel" placeholder="Phone" required class="w-full bg-transparent border border-white/20 text-white placeholder-white/40 px-4 py-3 text-sm focus:outline-none focus:border-gold">
-        </div>
-        <input type="email" placeholder="Email" required class="w-full bg-transparent border border-white/20 text-white placeholder-white/40 px-4 py-3 text-sm focus:outline-none focus:border-gold">
-        <select class="w-full bg-transparent border border-white/20 text-white/70 px-4 py-3 text-sm focus:outline-none focus:border-gold">
-          <option class="bg-ink" value="">Select a Service</option>
-          <option class="bg-ink">Colon Hydrotherapy</option>
-          <option class="bg-ink">Infrared Sauna</option>
-          <option class="bg-ink">Ionic Foot Detox</option>
-          <option class="bg-ink">V-Steam / A-Steam</option>
-          <option class="bg-ink">HydraFacial</option>
-        </select>
-        <textarea rows="3" placeholder="Notes (optional)" class="w-full bg-transparent border border-white/20 text-white placeholder-white/40 px-4 py-3 text-sm focus:outline-none focus:border-gold"></textarea>
-        <button type="submit" class="w-full bg-gold text-ink text-xs letterspace uppercase py-4 hover:bg-gold-light transition-colors duration-300">Request Appointment</button>
-        <p id="formMsg" class="hidden text-gold-light text-xs text-center pt-2">Thank you — we'll be in touch shortly.</p>
-      </form>
+    <div class="reveal border border-gold/20 min-h-[22rem] lg:min-h-0 overflow-hidden" style="transition-delay:.1s">
+      <iframe
+        title="Map to NOLA Colonics"
+        src="https://www.google.com/maps?q=2426+Louisiana+Ave,+New+Orleans,+LA+70115&output=embed"
+        class="w-full h-full min-h-[22rem] grayscale-[30%] contrast-[1.1]"
+        style="filter: sepia(8%);"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
   </div>
 </section>
@@ -499,7 +462,7 @@
 </div>
 
 <!-- ============ FOOTER ============ -->
-<footer class="bg-ink border-t border-gold/20 py-12 pb-24 md:pb-12">
+<footer class="bg-ink border-t border-gold/20 py-12 pb-28 md:pb-12">
   <div class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
     <div class="flex items-center gap-3">
       <span class="text-gold text-lg">⚜</span>
@@ -508,10 +471,26 @@
     <p class="text-white/40 text-xs letterspace uppercase text-center">Cleanse · Reset · Renew</p>
     <p class="text-white/40 text-xs">© 2026 NOLA Colonics. All rights reserved.</p>
   </div>
+  <p class="text-center text-white/40 text-xs mt-8">Designed by <a href="https://epoch-skin.com" target="_blank" rel="noopener" class="hover:text-gold-light underline-offset-4 hover:underline">Epoch Skin</a></p>
 </footer>
 
 <script>
-  // mobile menu
+  // ---- Image fallback ----
+  function imgFail(img) {
+    if (img.dataset.icon !== undefined) {
+      var s = document.createElement('span');
+      s.className = 'text-gold text-xs';
+      s.textContent = (img.alt || '').charAt(0);
+      img.replaceWith(s);
+      return;
+    }
+    var d = document.createElement('div');
+    d.className = img.className + ' flex items-center justify-center bg-ink-light text-white/60 text-xs letterspace uppercase';
+    d.textContent = 'Photo Coming Soon';
+    img.replaceWith(d);
+  }
+
+  // ---- Mobile menu ----
   document.getElementById('menuBtn').addEventListener('click', function(){
     document.getElementById('mobileMenu').classList.toggle('hidden');
   });
@@ -521,79 +500,186 @@
     });
   });
 
-  // scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el => io.observe(el));
+  // ---- Services (single source for the menu and the booking flow) ----
+  var GROUPS = ['Colonics', 'Spa & Leisure', 'Packages'];
+  var SERVICES = [
+    { g: 0, name: 'Consultation / 45 Minute Colonic Session', note: 'For new customers', min: 60,  dur: '1 hr',        price: 75 },
+    { g: 0, name: '1 Hour Colon Hydrotherapy Session',        note: '',                  min: 60,  dur: '1 hr',        price: 75 },
+    { g: 0, name: '45 Minute Colon Hydrotherapy Session',     note: 'For returning customers', min: 45, dur: '45 min', price: 65 },
+    { g: 0, name: 'Elite Party',                              note: '', min: 180, dur: '3 hr',   price: null },
+    { g: 1, name: 'Infrared Sauna: Individual Session',       note: '',                  min: 30,  dur: '30 min',      price: 40 },
+    { g: 1, name: 'V-Steam / A-Steam',                        note: '',                  min: 30,  dur: '30 min',      price: 40 },
+    { g: 1, name: 'Ionic Foot Detox',                         note: '',                  min: 30,  dur: '30 min',      price: 40 },
+    { g: 1, name: 'HydraFacial Classic',                      note: '',                  min: 60,  dur: '1 hr',        price: 149 },
+    { g: 1, name: 'HydraFacial Platinum',                     note: '',                  min: 90,  dur: '1 hr 30 min', price: 300 },
+    { g: 1, name: 'Brazilian Wax',                            note: '',                  min: 45,  dur: '45 min',      price: 50 },
+    { g: 1, name: 'Brazilian Wax + Hydra Vajacial',           note: '',                  min: 75,  dur: '1 hr 15 min', price: 100 },
+    { g: 1, name: 'Eyebrow Wax & Tint',                       note: '',                  min: 30,  dur: '30 min',      price: 50 },
+    { g: 2, name: 'Platinum Package',                         note: '',                  min: 120, dur: '2 hr',        price: 130 },
+    { g: 2, name: 'Gold Package',                             note: '',                  min: 150, dur: '2 hr 30 min', price: 170 },
+    { g: 2, name: 'House Special Detox Package',              note: '',                  min: 90,  dur: '1 hr 30 min', price: 125 }
+  ];
+  function priceLabel(s) { return s.price === null ? 'Call' : '$' + s.price; }
+  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  function renderMenu() {
+    var html = '';
+    GROUPS.forEach(function(group, gi) {
+      html += '<div class="reveal ' + (gi ? 'mt-14' : '') + '">' +
+        '<p class="text-gold-light text-xs letterspace uppercase pb-4 border-b border-gold/40">' + esc(group) + '</p><ul>';
+      SERVICES.forEach(function(s, i) {
+        if (s.g !== gi) return;
+        html += '<li class="border-b border-white/10"><button onclick="bookService(' + i + ')" class="menu-row w-full text-left flex items-baseline gap-4 py-5 group">' +
+          '<span class="flex-1 min-w-0"><span class="menu-name block font-display text-xl md:text-2xl text-white transition-colors">' + esc(s.name) + '</span>' +
+          (s.note ? '<span class="block text-white/50 text-xs mt-1">' + esc(s.note) + '</span>' : '') + '</span>' +
+          '<span class="text-white/50 text-xs letterspace uppercase whitespace-nowrap">' + esc(s.dur) + '</span>' +
+          '<span class="font-display text-xl md:text-2xl text-gold-light w-16 text-right">' + priceLabel(s) + '</span>' +
+          '</button></li>';
+      });
+      html += '</ul></div>';
+    });
+    document.getElementById('menuMount').innerHTML = html;
+  }
+
+  function renderBookServices() {
+    var html = '';
+    GROUPS.forEach(function(group, gi) {
+      html += '<p class="text-gold text-xs letterspace uppercase ' + (gi ? 'mt-8' : '') + ' mb-3">' + esc(group) + '</p><div class="grid sm:grid-cols-2 gap-3">';
+      SERVICES.forEach(function(s, i) {
+        if (s.g !== gi) return;
+        html += '<button onclick="selectService(' + i + ')" class="text-left border border-ink/10 hover:border-gold p-4 transition-colors bg-white/40">' +
+          '<p class="text-ink font-medium text-sm">' + esc(s.name) + '</p>' +
+          '<p class="text-ink-light text-xs mt-1">' + esc(s.dur) + ' · ' + (s.price === null ? 'Call for info' : '$' + s.price) + '</p></button>';
+      });
+      html += '</div>';
+    });
+    document.getElementById('bookServiceMount').innerHTML = html;
+  }
 
   // ---- Mock booking flow ----
-  let bookingService = '';
-  let bookingDay = '';
-  let bookingTime = '';
+  var current = null;
+  var bookingDay = '';
+  var bookingTime = '';
+  var bookingDayKey = 0;
 
   function goToStep(step) {
-    [1,2,3].forEach(n => {
+    [1,2,3,4].forEach(function(n) {
       document.getElementById('bookStep'+n).classList.toggle('hidden', n !== step);
-      const dot = document.getElementById('stepDot'+n);
+      var dot = document.getElementById('stepDot'+n);
       if (n <= step) { dot.classList.add('bg-gold','text-cream'); dot.classList.remove('bg-ink/10','text-ink-light'); }
       else { dot.classList.remove('bg-gold','text-cream'); dot.classList.add('bg-ink/10','text-ink-light'); }
     });
+    document.getElementById('bookCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  function selectService(label) {
-    bookingService = label;
-    document.getElementById('selectedServiceLabel').textContent = label;
-    buildDayGrid();
+  function selectService(i) {
+    current = i;
+    var s = SERVICES[i];
+    document.getElementById('selectedServiceLabel').textContent = s.name + ' — ' + s.dur + ' · ' + (s.price === null ? 'Call for info' : '$' + s.price);
+    var callOnly = s.price === null;
+    document.getElementById('callOnly').classList.toggle('hidden', !callOnly);
+    document.getElementById('pickTime').classList.toggle('hidden', callOnly);
+    if (!callOnly) buildDayGrid();
     goToStep(2);
   }
 
+  function bookService(i) {
+    selectService(i);
+  }
+
   function buildDayGrid() {
-    const dayGrid = document.getElementById('dayGrid');
+    var dayGrid = document.getElementById('dayGrid');
     dayGrid.innerHTML = '';
-    const today = new Date();
-    const names = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    let added = 0, offset = 0;
+    var today = new Date();
+    var names = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var added = 0, offset = 0;
     while (added < 6) {
-      const d = new Date(today);
+      var d = new Date(today);
       d.setDate(today.getDate() + offset);
+      var isToday = offset === 0;
       offset++;
       if (d.getDay() === 0) continue; // closed Sunday
-      const label = names[d.getDay()] + ' ' + (d.getMonth()+1) + '/' + d.getDate();
-      const btn = document.createElement('button');
+      var label = names[d.getDay()] + ' ' + (d.getMonth()+1) + '/' + d.getDate();
+      var btn = document.createElement('button');
       btn.textContent = label;
       btn.className = 'day-btn border border-ink/10 hover:border-gold text-ink-light text-sm py-3 transition-colors';
-      btn.onclick = () => selectDay(label, btn);
+      (function(lbl, b, dt, td) { b.onclick = function() { selectDay(lbl, b, dt, td); }; })(label, btn, d, isToday);
       dayGrid.appendChild(btn);
       added++;
     }
     document.getElementById('timeGrid').innerHTML = '';
   }
 
-  function selectDay(label, btn) {
+  function selectDay(label, btn, date, isToday) {
     bookingDay = label;
-    document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('bg-gold','text-cream','border-gold'));
+    bookingDayKey = date.getDate() + date.getMonth() * 31;
+    document.querySelectorAll('.day-btn').forEach(function(b) { b.classList.remove('bg-gold','text-cream','border-gold'); });
     btn.classList.add('bg-gold','text-cream','border-gold');
-    buildTimeGrid();
+    buildTimeGrid(isToday);
   }
 
-  function buildTimeGrid() {
-    const times = ['9:00 AM','10:30 AM','12:00 PM','1:30 PM','3:00 PM','4:30 PM','6:00 PM','7:00 PM'];
-    const timeGrid = document.getElementById('timeGrid');
+  function fmt(mins) {
+    var h = Math.floor(mins / 60), m = mins % 60;
+    var ap = h >= 12 ? 'PM' : 'AM';
+    var h12 = h % 12 === 0 ? 12 : h % 12;
+    return h12 + ':' + (m < 10 ? '0' + m : m) + ' ' + ap;
+  }
+
+  // Open Mon–Sat 8am–8pm. A session must finish by closing; some slots show as taken.
+  function buildTimeGrid(isToday) {
+    var s = SERVICES[current];
+    var open = 8 * 60, close = 20 * 60;
+    var now = new Date();
+    var nowMin = now.getHours() * 60 + now.getMinutes() + 60;
+    var timeGrid = document.getElementById('timeGrid');
     timeGrid.innerHTML = '';
-    times.forEach(t => {
-      const btn = document.createElement('button');
-      btn.textContent = t;
-      btn.className = 'time-btn border border-ink/10 hover:border-gold text-ink-light text-sm py-3 transition-colors';
-      btn.onclick = () => {
-        bookingTime = t;
-        document.getElementById('confirmSummary').innerHTML =
-          bookingService.split(' — ')[0] + '<br>' + bookingDay + ' at ' + t;
-        goToStep(3);
-      };
+    var shown = 0;
+    for (var t = open, idx = 0; t + s.min <= close; t += 60, idx++) {
+      if (isToday && t < nowMin) continue;
+      var taken = ((bookingDayKey * 31 + idx * 17 + current * 13) % 4) === 0;
+      var btn = document.createElement('button');
+      btn.textContent = fmt(t);
+      if (taken) {
+        btn.disabled = true;
+        btn.className = 'slot-off border border-ink/10 text-ink-light text-sm py-3';
+      } else {
+        btn.className = 'time-btn border border-ink/10 hover:border-gold text-ink-light text-sm py-3 transition-colors';
+        (function(label) {
+          btn.onclick = function() {
+            bookingTime = label;
+            document.getElementById('detailsSummary').textContent = s.name + ' · ' + bookingDay + ' at ' + label;
+            goToStep(3);
+          };
+        })(fmt(t));
+      }
       timeGrid.appendChild(btn);
-    });
+      shown++;
+    }
+    if (!shown) {
+      timeGrid.innerHTML = '<p class="col-span-full text-center text-ink-light text-sm">No more openings today — try another day.</p>';
+    }
+  }
+
+  document.getElementById('detailsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var s = SERVICES[current];
+    document.getElementById('confirmSummary').innerHTML = esc(s.name) + '<br>' + esc(bookingDay) + ' at ' + esc(bookingTime);
+    this.reset();
+    goToStep(4);
+  });
+
+  renderMenu();
+  renderBookServices();
+
+  // ---- Scroll reveal ----
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function(el) { el.classList.add('in'); });
   }
 </script>
 </body>
